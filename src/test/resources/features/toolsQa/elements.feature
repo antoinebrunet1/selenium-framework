@@ -7,6 +7,11 @@ Feature: Tools QA Elements
     And I enter "<email>" as the email
     And I enter "<currentAddress>" as the current address
     And I enter "<permanentAddress>" as the permanent address
+    And I click on submit
+    Then I see the entered full name "<fullName>" in the box below the submit button
+    Then I see the entered email "<email>" in the box below the submit button
+    Then I see the entered current address "<currentAddress>" in the box below the submit button
+    Then I see the entered permanent address "<permanentAddress>" in the box below the submit button
 
     Examples:
       | fullName       | email          | currentAddress    | permanentAddress  |

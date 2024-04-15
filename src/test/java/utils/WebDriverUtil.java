@@ -2,9 +2,11 @@ package utils;
 
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import lombok.Getter;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,6 +14,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WebDriverUtil {
+    @Getter
     private static WebDriver webDriver;
     private static Scenario scenario;
 
@@ -59,6 +62,28 @@ public class WebDriverUtil {
 
     private static WebElement getWebElementByXpath(String xpath) {
         return webDriver.findElement(By.xpath(xpath));
+    }
+
+    public static void moveToElement(String xpath) {
+        WebElement webElement = getWebElementByXpath(xpath);
+        ((JavascriptExecutor)webDriver).executeScript("arguments[0].scrollIntoView();", webElement);
+    }
+
+    public static void click(String xpath) {
+        WebElement webElement = getWebElementByXpath(xpath);
+
+        webElement.click();
+    }
+
+    public static void waitForElement(String xpath) {
+        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+    }
+
+    public static String getElementText(String xpath) {
+        WebElement webElement = getWebElementByXpath(xpath);
+
+        return  webElement.getText();
     }
 
     public static void quitWebDriver() {

@@ -2,6 +2,7 @@ package stepDefinitions.toolsQa;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import pages.toolsQa.elements.TextBoxPage;
 
 public class ElementsPageStepDefinitions {
@@ -30,5 +31,30 @@ public class ElementsPageStepDefinitions {
     @And("I enter {string} as the permanent address")
     public void iEnterAsThePermanentAddress(String permanentAddress) {
         textBoxPage.enterPermanentAddress(permanentAddress);
+    }
+
+    @And("I click on submit")
+    public void iClickOnSubmit() {
+        textBoxPage.clickOnSubmit();
+    }
+
+    @Then("I see the entered full name {string} in the box below the submit button")
+    public void iSeeTheEnteredFullNameInTheBoxBelowTheSubmitButton(String fullName) {
+        textBoxPage.enteredFullNameInBoxBelowSubmitButton(fullName);
+    }
+
+    @Then("I see the entered email {string} in the box below the submit button")
+    public void iSeeTheEnteredEmailInTheBoxBelowTheSubmitButton(String email) {
+        textBoxPage.enteredEmailInBoxBelowSubmitButton(email);
+    }
+
+    @Then("I see the entered current address {string} in the box below the submit button")
+    public void iSeeTheEnteredCurrentAddressInTheBoxBelowTheSubmitButton(String currentAddress) {
+        textBoxPage.enteredCurrentAddressInBoxBelowSubmitButton(currentAddress);
+    }
+
+    @Then("I see the entered permanent address {string} in the box below the submit button")
+    public void iSeeTheEnteredPermanentAddressInTheBoxBelowTheSubmitButton(String permanentAddress) {
+        textBoxPage.enteredPermanentAddressInBoxBelowSubmitButton(permanentAddress);
     }
 }
