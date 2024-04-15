@@ -1,9 +1,5 @@
 package pages.toolsQa.elements;
 
-import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import utils.WebDriverUtil;
 import utils.XpathsPropertiesFile;
 
@@ -14,9 +10,7 @@ public class TextBoxPage {
     );
 
     public void navigateToTextBoxPage() {
-        WebDriverUtil.goToUrl("https://demoqa.com/text-box");
-        WebDriverUtil.waitForPageToLoad();
-        WebDriverUtil.takeScreenshot();
+        WebDriverUtil.navigateToPage("https://demoqa.com/text-box");
     }
 
     public void enterFullName(String fullName) {
@@ -51,40 +45,22 @@ public class TextBoxPage {
     }
 
     public void enteredFullNameInBoxBelowSubmitButton(String fullName) {
-        String xpath = xpathsPropertiesFile.getXpath("fullNameInBoxUnderSubmitButton");
         String expectedText = "Name:" + fullName;
-
-        verifyText(xpath, expectedText);
+        WebDriverUtil.verifyText(xpathsPropertiesFile, "fullNameInBoxUnderSubmitButton", expectedText);
     }
 
     public void enteredEmailInBoxBelowSubmitButton(String email) {
-        String xpath = xpathsPropertiesFile.getXpath("emailInBoxUnderSubmitButton");
         String expectedText = "Email:" + email;
-
-        verifyText(xpath, expectedText);
+        WebDriverUtil.verifyText(xpathsPropertiesFile, "emailInBoxUnderSubmitButton", expectedText);
     }
 
     public void enteredCurrentAddressInBoxBelowSubmitButton(String currentAddress) {
-        String xpath = xpathsPropertiesFile.getXpath("currentAddressInBoxUnderSubmitButton");
         String expectedText = "Current Address :" + currentAddress;
-
-        verifyText(xpath, expectedText);
+        WebDriverUtil.verifyText(xpathsPropertiesFile, "currentAddressInBoxUnderSubmitButton", expectedText);
     }
 
-    public void enteredPermanentAddressInBoxBelowSubmitButton(String permanentAddress) {
-        String xpath = xpathsPropertiesFile.getXpath("permanentAddressInBoxUnderSubmitButton");
+    public void enteredPermanentAddressIsInBoxBelowSubmitButton(String permanentAddress) {
         String expectedText = "Permananet Address :" + permanentAddress;
-
-        verifyText(xpath, expectedText);
-    }
-
-    private void verifyText(String xpath, String expectedText) {
-        String actualText = WebDriverUtil.getElementText(xpath);
-
-        WebDriverUtil.waitForElement(xpath);
-
-        Assert.assertEquals(expectedText, actualText);
-
-        WebDriverUtil.takeScreenshot();
+        WebDriverUtil.verifyText(xpathsPropertiesFile, "permanentAddressInBoxUnderSubmitButton", expectedText);
     }
 }

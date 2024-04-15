@@ -3,10 +3,10 @@ package utils;
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import lombok.Getter;
+import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -33,11 +33,13 @@ public class WebDriverUtil {
         WebDriverUtil.scenario = scenario;
     }
 
-    public static void goToUrl(String url) {
+    public static void navigateToPage(String url) {
         webDriver.get(url);
+        waitForPageToLoad();
+        takeScreenshot();
     }
 
-    public static void waitForPageToLoad() {
+    private static void waitForPageToLoad() {
         Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         wait.until(d -> ((JavascriptExecutor) d).executeScript("return document.readyState").equals("complete"));
     }
@@ -75,15 +77,19 @@ public class WebDriverUtil {
         webElement.click();
     }
 
-    public static void waitForElement(String xpath) {
-        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
-    }
-
     public static String getElementText(String xpath) {
         WebElement webElement = getWebElementByXpath(xpath);
 
         return  webElement.getText();
+    }
+
+    public static void verifyText(XpathsPropertiesFile xpathsPropertiesFile, String xpathName, String expectedText) {
+        String xpath = xpathsPropertiesFile.getXpath(xpathName);
+        String actualText = WebDriverUtil.getElementText(xpath);
+
+        Assert.assertEquals(expectedText, actualText);
+
+        WebDriverUtil.takeScreenshot();
     }
 
     public static void quitWebDriver() {

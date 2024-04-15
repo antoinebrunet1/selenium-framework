@@ -3,10 +3,12 @@ package stepDefinitions.toolsQa;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import pages.toolsQa.elements.CheckBoxPage;
 import pages.toolsQa.elements.TextBoxPage;
 
 public class ElementsPageStepDefinitions {
     TextBoxPage textBoxPage = new TextBoxPage();
+    CheckBoxPage checkBoxPage = new CheckBoxPage();
 
     @Given("I navigate to the text-box page")
     public void iNavigateToTheTextBoxPage() {
@@ -55,6 +57,21 @@ public class ElementsPageStepDefinitions {
 
     @Then("I see the entered permanent address {string} in the box below the submit button")
     public void iSeeTheEnteredPermanentAddressInTheBoxBelowTheSubmitButton(String permanentAddress) {
-        textBoxPage.enteredPermanentAddressInBoxBelowSubmitButton(permanentAddress);
+        textBoxPage.enteredPermanentAddressIsInBoxBelowSubmitButton(permanentAddress);
+    }
+
+    @Given("I navigate to the check box page")
+    public void iNavigateToTheCheckBoxPage() {
+        checkBoxPage.navigateToTextBoxPage();
+    }
+
+    @And("I select Notes which is under Desktop which is under Home")
+    public void iSelectNotesWhichIsUnderDesktopWhichIsUnderHome() {
+        checkBoxPage.selectNotesWhichIsUnderDesktopWhichIsUnderHome();
+    }
+
+    @Then("I see the message indicating I have selected Notes")
+    public void iSeeTheMessageIndicatingIHaveSelectedNotes() {
+        checkBoxPage.thereIsMessageIndicatingIHaveSelectedNotes();
     }
 }
