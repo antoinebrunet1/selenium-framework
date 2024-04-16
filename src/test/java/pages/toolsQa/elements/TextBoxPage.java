@@ -32,8 +32,8 @@ public class TextBoxPage {
     public void clickOnSubmit() {
         String xpath = xpathsPropertiesFile.getXpath("submitButton");
         WebDriverUtil.moveToElement(xpath);
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, "submitButton");
+        WebDriverUtil.click(xpathsPropertiesFile, "submitButton");
     }
 
     public void enteredFullNameInBoxBelowSubmitButton(String fullName) {

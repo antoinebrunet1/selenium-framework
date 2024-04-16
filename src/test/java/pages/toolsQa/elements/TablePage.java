@@ -14,24 +14,18 @@ public class TablePage {
     }
 
     public void clickOnDeleteForFirstRow() {
-        String xpath = xpathsPropertiesFile.getXpath("deleteButtonForFirstRow");
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, "deleteButtonForFirstRow");
+        WebDriverUtil.click(xpathsPropertiesFile, "deleteButtonForFirstRow");
     }
 
     public void deletedRowIsNoLongerPresent() {
-        String xpath = xpathsPropertiesFile.getXpath("firstRow");
-
-        WebDriverUtil.waitForElementToBeAbsent(xpath);
+        WebDriverUtil.waitForElementToBeAbsent(xpathsPropertiesFile, "firstRow");
         WebDriverUtil.takeScreenshot();
     }
 
     public void clickOnModifyForFirstRow() {
-        String xpath = xpathsPropertiesFile.getXpath("modifyButtonForFirstRow");
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, "modifyButtonForFirstRow");
+        WebDriverUtil.click(xpathsPropertiesFile, "modifyButtonForFirstRow");
     }
 
     public void changeFirstNameForFirstRow(String newFullName) {
@@ -59,16 +53,12 @@ public class TablePage {
     }
 
     private void waitForWindowToModifyRowsAndToAddRowToBeAbsent() {
-        String xpath = xpathsPropertiesFile.getXpath("windowToModifyRowsAndToAddRow");
-
-        WebDriverUtil.waitForElementToBeAbsent(xpath);
+        WebDriverUtil.waitForElementToBeAbsent(xpathsPropertiesFile, "windowToModifyRowsAndToAddRow");
     }
 
     public void clickOnAdd() {
-        String xpath = xpathsPropertiesFile.getXpath("addButton");
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, "addButton");
+        WebDriverUtil.click(xpathsPropertiesFile, "addButton");
     }
 
     public void enterFirstName(String firstName) {

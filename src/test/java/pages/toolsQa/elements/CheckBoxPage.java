@@ -20,10 +20,8 @@ public class CheckBoxPage {
     }
 
     private void click(String xpathName) {
-        String xpath = xpathsPropertiesFile.getXpath(xpathName);
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, xpathName);
+        WebDriverUtil.click(xpathsPropertiesFile, xpathName);
         WebDriverUtil.takeScreenshot();
     }
 

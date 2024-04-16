@@ -14,10 +14,8 @@ public class RadioButtonPage {
     }
 
     public void selectYes() {
-        String xpath = xpathsPropertiesFile.getXpath("yesButton");
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.click(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, "yesButton");
+        WebDriverUtil.click(xpathsPropertiesFile, "yesButton");
     }
 
     public void thereIsMessageIndicatingIHaveSelectedYes() {

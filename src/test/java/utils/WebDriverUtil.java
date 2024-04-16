@@ -11,6 +11,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Properties;
 
 public class WebDriverUtil {
     private static WebDriver webDriver;
@@ -49,7 +50,8 @@ public class WebDriverUtil {
         scenario.attach(screenshot, "image/png", scenario.getName());
     }
 
-    public static void waitForWebElementToBeClickable(String xpath) {
+    public static void waitForWebElementToBeClickable(XpathsPropertiesFile xpathsPropertiesFile, String xpathName) {
+        String xpath = xpathsPropertiesFile.getXpath(xpathName);
         Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
     }
@@ -69,7 +71,8 @@ public class WebDriverUtil {
         ((JavascriptExecutor)webDriver).executeScript("arguments[0].scrollIntoView();", webElement);
     }
 
-    public static void click(String xpath) {
+    public static void click(XpathsPropertiesFile xpathsPropertiesFile, String xpathName) {
+        String xpath = xpathsPropertiesFile.getXpath(xpathName);
         WebElement webElement = getWebElementByXpath(xpath);
 
         webElement.click();
@@ -90,7 +93,8 @@ public class WebDriverUtil {
         WebDriverUtil.takeScreenshot();
     }
 
-    public static void waitForElementToBeAbsent(String xpath) {
+    public static void waitForElementToBeAbsent(XpathsPropertiesFile xpathsPropertiesFile, String xpathName) {
+        String xpath = xpathsPropertiesFile.getXpath(xpathName);
         Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
     }
@@ -109,7 +113,7 @@ public class WebDriverUtil {
     public static void fillField(XpathsPropertiesFile xpathsPropertiesFile, String xpathName, String text) {
         String xpath = xpathsPropertiesFile.getXpath(xpathName);
 
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
+        WebDriverUtil.waitForWebElementToBeClickable(xpathsPropertiesFile, xpathName);
         WebDriverUtil.sendText(xpath, text);
         WebDriverUtil.takeScreenshot();
     }
