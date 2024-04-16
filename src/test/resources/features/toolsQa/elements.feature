@@ -1,3 +1,4 @@
+@toolsQaElements
 Feature: Tools QA Elements
 
   @textBox
@@ -28,3 +29,43 @@ Feature: Tools QA Elements
     Given I navigate to the radio button page
     And I select Yes
     Then I see the message indicating I have selected Yes
+
+  @tableDeleteFirstRow
+  Scenario: Delete First Row in Table
+    Given I navigate to the table page
+    And I click on delete for the first row
+    Then I see the row I deleted is no longer present
+
+  @tableModifyFirstRow
+  Scenario Outline: Modify First Row in Table
+    Given I navigate to the table page
+    And I click on modify for the first row
+    And I change the first name to "<newFirstName>"
+    And I click on submit
+    Then I see the first row now has the first name "<newFirstName>"
+
+    Examples:
+      | newFirstName |
+      | Antoine      |
+
+  @tableAddRow
+  Scenario Outline: Add Row in Table
+    Given I navigate to the table page
+    And I click on add
+    And I enter "<firstName>" for the first name
+    And I enter "<lastName>" for the last name
+    And I enter "<email>" for the email
+    And I enter "<age>" for the age
+    And I enter "<salary>" for the salary
+    And I enter "<department>" for the department
+    And I click on submit
+    Then I see the first name of the new row is "<firstName>"
+    Then I see the last name of the new row is "<lastName>"
+    Then I see the age of the new row is "<age>"
+    Then I see the email of the new row is "<email>"
+    Then I see the salary of the new row is "<salary>"
+    Then I see the department of the new row is "<department>"
+
+    Examples:
+      | firstName | lastName | email          | age | salary | department |
+      | Antoine   | Brunet   | test@email.com | 50  | 90000  | Sales      |

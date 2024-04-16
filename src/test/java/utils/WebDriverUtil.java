@@ -78,7 +78,7 @@ public class WebDriverUtil {
     private static String getElementText(String xpath) {
         WebElement webElement = getWebElementByXpath(xpath);
 
-        return  webElement.getText();
+        return webElement.getText();
     }
 
     public static void verifyText(XpathsPropertiesFile xpathsPropertiesFile, String xpathName, String expectedText) {
@@ -88,6 +88,35 @@ public class WebDriverUtil {
         Assert.assertEquals(expectedText, actualText);
 
         WebDriverUtil.takeScreenshot();
+    }
+
+    public static void waitForElementToBeAbsent(String xpath) {
+        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(xpath)));
+    }
+
+    public static void waitForElementToBePresent(String xpath) {
+        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(xpath)));
+    }
+
+    public static void clearElement(String xpath) {
+        WebElement webElement = getWebElementByXpath(xpath);
+
+        webElement.clear();
+    }
+
+    public static void fillField(XpathsPropertiesFile xpathsPropertiesFile, String xpathName, String text) {
+        String xpath = xpathsPropertiesFile.getXpath(xpathName);
+
+        WebDriverUtil.waitForWebElementToBeClickable(xpath);
+        WebDriverUtil.sendText(xpath, text);
+        WebDriverUtil.takeScreenshot();
+    }
+
+    public static void waitForElementToHaveText(String xpath, String text) {
+        Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
+        wait.until(ExpectedConditions.textToBe(By.xpath(xpath), text));
     }
 
     public static void quitWebDriver() {

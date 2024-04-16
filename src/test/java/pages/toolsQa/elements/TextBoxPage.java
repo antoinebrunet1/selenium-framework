@@ -14,27 +14,19 @@ public class TextBoxPage {
     }
 
     public void enterFullName(String fullName) {
-        fillField("fullName", fullName);
+        WebDriverUtil.fillField(xpathsPropertiesFile, "fullName", fullName);
     }
 
     public void enterEmail(String email) {
-        fillField("email", email);
+        WebDriverUtil.fillField(xpathsPropertiesFile, "email", email);
     }
 
     public void enterCurrentAddress(String currentAddress) {
-        fillField("currentAddress", currentAddress);
+        WebDriverUtil.fillField(xpathsPropertiesFile, "currentAddress", currentAddress);
     }
 
     public void enterPermanentAddress(String permanentAddress) {
-        fillField("permanentAddress", permanentAddress);
-    }
-
-    private void fillField(String xpathName, String text) {
-        String xpath = xpathsPropertiesFile.getXpath(xpathName);
-
-        WebDriverUtil.waitForWebElementToBeClickable(xpath);
-        WebDriverUtil.sendText(xpath, text);
-        WebDriverUtil.takeScreenshot();
+        WebDriverUtil.fillField(xpathsPropertiesFile, "permanentAddress", permanentAddress);
     }
 
     public void clickOnSubmit() {

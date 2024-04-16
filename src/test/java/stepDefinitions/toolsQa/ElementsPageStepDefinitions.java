@@ -5,12 +5,14 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.toolsQa.elements.CheckBoxPage;
 import pages.toolsQa.elements.RadioButtonPage;
+import pages.toolsQa.elements.TablePage;
 import pages.toolsQa.elements.TextBoxPage;
 
 public class ElementsPageStepDefinitions {
     private final TextBoxPage textBoxPage = new TextBoxPage();
     private final CheckBoxPage checkBoxPage = new CheckBoxPage();
     private final RadioButtonPage radioButtonPage = new RadioButtonPage();
+    private final TablePage tablePage = new TablePage();
 
     @Given("I navigate to the text-box page")
     public void iNavigateToTheTextBoxPage() {
@@ -90,5 +92,100 @@ public class ElementsPageStepDefinitions {
     @Then("I see the message indicating I have selected Yes")
     public void iSeeTheMessageIndicatingIHaveSelectedYes() {
         radioButtonPage.thereIsMessageIndicatingIHaveSelectedYes();
+    }
+
+    @Given("I navigate to the table page")
+    public void iNavigateToTheTablePage() {
+        tablePage.navigateToTablePage();
+    }
+
+    @And("I click on delete for the first row")
+    public void iClickOnDeleteForTheFirstRow() {
+        tablePage.clickOnDeleteForFirstRow();
+    }
+
+    @Then("I see the row I deleted is no longer present")
+    public void iSeeTheRowIDeletedIsNoLongerPresent() {
+        tablePage.deletedRowIsNoLongerPresent();
+    }
+
+    @And("I click on modify for the first row")
+    public void iClickOnModifyForTheFirstRow() {
+        tablePage.clickOnModifyForFirstRow();
+    }
+
+    @And("I change the first name to {string}")
+    public void iChangeTheFirstNameTo(String newFirstName) {
+        tablePage.changeFirstNameForFirstRow(newFirstName);
+    }
+
+    @Then("I see the first row now has the first name {string}")
+    public void iSeeTheFirstRowNowHasTheFirstName(String newFirstName) {
+        tablePage.firstRowHasNewFirstName(newFirstName);
+    }
+
+    @And("I click on add")
+    public void iClickOnAdd() {
+        tablePage.clickOnAdd();
+    }
+
+    @And("I enter {string} for the first name")
+    public void iEnterForTheFirstName(String firstName) {
+        tablePage.enterFirstName(firstName);
+    }
+
+    @And("I enter {string} for the last name")
+    public void iEnterForTheLastName(String lastName) {
+        tablePage.enterLastName(lastName);
+    }
+
+    @And("I enter {string} for the email")
+    public void iEnterForTheEmail(String email) {
+        tablePage.enterEmail(email);
+    }
+
+    @And("I enter {string} for the age")
+    public void iEnterForTheAge(String age) {
+        tablePage.enterAge(age);
+    }
+
+    @And("I enter {string} for the salary")
+    public void iEnterForTheSalary(String salary) {
+        tablePage.enterSalary(salary);
+    }
+
+    @And("I enter {string} for the department")
+    public void iEnterForTheDepartment(String department) {
+        tablePage.enterDepartment(department);
+    }
+
+    @Then("I see the first name of the new row is {string}")
+    public void iSeeTheFirstNameOfTheNewRowIs(String firstName) {
+        tablePage.firstNameOfNewRowIsCorrect(firstName);
+    }
+
+    @Then("I see the last name of the new row is {string}")
+    public void iSeeTheLastNameOfTheNewRowIs(String lastName) {
+        tablePage.lastNameOfNewRowIsCorrect(lastName);
+    }
+
+    @Then("I see the age of the new row is {string}")
+    public void iSeeTheAgeOfTheNewRowIs(String age) {
+        tablePage.ageNameOfNewRowIsCorrect(age);
+    }
+
+    @Then("I see the email of the new row is {string}")
+    public void iSeeTheEmailOfTheNewRowIs(String email) {
+        tablePage.emailOfNewRowIsCorrect(email);
+    }
+
+    @Then("I see the salary of the new row is {string}")
+    public void iSeeTheSalaryOfTheNewRowIs(String salary) {
+        tablePage.salaryOfNewRowIsCorrect(salary);
+    }
+
+    @Then("I see the department of the new row is {string}")
+    public void iSeeTheDepartmentOfTheNewRowIs(String department) {
+        tablePage.departmentOfNewRowIsCorrect(department);
     }
 }
