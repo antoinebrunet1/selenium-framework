@@ -69,3 +69,15 @@ Feature: Tools QA Elements
     Examples:
       | firstName | lastName | email          | age | salary | department |
       | Antoine   | Brunet   | test@email.com | 50  | 90000  | Sales      |
+
+  @buttonsDoubleClick
+  Scenario: Double Click for Buttons
+    Given I navigate to the buttons page
+    And I double click on the first button
+    Then I see the message indicating I have done a double click
+
+  @buttonsRightClick
+  Scenario: Double Click for Buttons
+    Given I navigate to the buttons page
+    And I right click on the second button
+    Then I see the message indicating I have done a right click

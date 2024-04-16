@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -121,6 +122,20 @@ public class WebDriverUtil {
     public static void waitForElementToHaveText(String xpath, String text) {
         Wait<WebDriver> wait = new WebDriverWait(webDriver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.textToBe(By.xpath(xpath), text));
+    }
+
+    public static void doubleClick(String xpath) {
+        Actions actions = new Actions(webDriver);
+        WebElement webElement = getWebElementByXpath(xpath);
+
+        actions.doubleClick(webElement).perform();
+    }
+
+    public static void rightClick(String xpath) {
+        Actions actions = new Actions(webDriver);
+        WebElement webElement = getWebElementByXpath(xpath);
+
+        actions.contextClick(webElement).perform();
     }
 
     public static void quitWebDriver() {

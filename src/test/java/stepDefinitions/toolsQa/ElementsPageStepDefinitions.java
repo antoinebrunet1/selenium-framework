@@ -3,16 +3,14 @@ package stepDefinitions.toolsQa;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-import pages.toolsQa.elements.CheckBoxPage;
-import pages.toolsQa.elements.RadioButtonPage;
-import pages.toolsQa.elements.TablePage;
-import pages.toolsQa.elements.TextBoxPage;
+import pages.toolsQa.elements.*;
 
 public class ElementsPageStepDefinitions {
     private final TextBoxPage textBoxPage = new TextBoxPage();
     private final CheckBoxPage checkBoxPage = new CheckBoxPage();
     private final RadioButtonPage radioButtonPage = new RadioButtonPage();
     private final TablePage tablePage = new TablePage();
+    private final ButtonsPage buttonsPage = new ButtonsPage();
 
     @Given("I navigate to the text-box page")
     public void iNavigateToTheTextBoxPage() {
@@ -187,5 +185,30 @@ public class ElementsPageStepDefinitions {
     @Then("I see the department of the new row is {string}")
     public void iSeeTheDepartmentOfTheNewRowIs(String department) {
         tablePage.departmentOfNewRowIsCorrect(department);
+    }
+
+    @Given("I navigate to the buttons page")
+    public void iNavigateToTheButtonsPage() {
+        buttonsPage.navigateToButtonsPage();
+    }
+
+    @And("I double click on the first button")
+    public void iDoubleClickOnTheFirstButton() {
+        buttonsPage.doubleClickOnFirstButton();
+    }
+
+    @Then("I see the message indicating I have done a double click")
+    public void iSeeTheMessageIndicatingIHaveDoneADoubleClick() {
+        buttonsPage.thereIsMessageIndicatingIHaveDoneADoubleClick();
+    }
+
+    @And("I right click on the second button")
+    public void iRightClickOnTheSecondButton() {
+        buttonsPage.rightClickOnSecondButton();
+    }
+
+    @Then("I see the message indicating I have done a right click")
+    public void iSeeTheMessageIndicatingIHaveDoneARightClick() {
+        buttonsPage.thereIsMessageIndicatingIHaveDoneARightClick();
     }
 }
