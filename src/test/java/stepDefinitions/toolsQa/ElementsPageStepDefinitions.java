@@ -4,11 +4,13 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.toolsQa.elements.CheckBoxPage;
+import pages.toolsQa.elements.RadioButtonPage;
 import pages.toolsQa.elements.TextBoxPage;
 
 public class ElementsPageStepDefinitions {
-    TextBoxPage textBoxPage = new TextBoxPage();
-    CheckBoxPage checkBoxPage = new CheckBoxPage();
+    private final TextBoxPage textBoxPage = new TextBoxPage();
+    private final CheckBoxPage checkBoxPage = new CheckBoxPage();
+    private final RadioButtonPage radioButtonPage = new RadioButtonPage();
 
     @Given("I navigate to the text-box page")
     public void iNavigateToTheTextBoxPage() {
@@ -73,5 +75,20 @@ public class ElementsPageStepDefinitions {
     @Then("I see the message indicating I have selected Notes")
     public void iSeeTheMessageIndicatingIHaveSelectedNotes() {
         checkBoxPage.thereIsMessageIndicatingIHaveSelectedNotes();
+    }
+
+    @Given("I navigate to the radio button page")
+    public void iNavigateToTheRadioButtonPage() {
+        radioButtonPage.navigateToRadioButtonPage();
+    }
+
+    @And("I select Yes")
+    public void iSelectYes() {
+        radioButtonPage.selectYes();
+    }
+
+    @Then("I see the message indicating I have selected Yes")
+    public void iSeeTheMessageIndicatingIHaveSelectedYes() {
+        radioButtonPage.thereIsMessageIndicatingIHaveSelectedYes();
     }
 }

@@ -2,7 +2,6 @@ package utils;
 
 import io.cucumber.java.Scenario;
 import io.github.bonigarcia.wdm.WebDriverManager;
-import lombok.Getter;
 import org.junit.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -14,7 +13,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 
 public class WebDriverUtil {
-    @Getter
     private static WebDriver webDriver;
     private static Scenario scenario;
 
@@ -77,7 +75,7 @@ public class WebDriverUtil {
         webElement.click();
     }
 
-    public static String getElementText(String xpath) {
+    private static String getElementText(String xpath) {
         WebElement webElement = getWebElementByXpath(xpath);
 
         return  webElement.getText();

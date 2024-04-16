@@ -17,8 +17,14 @@ Feature: Tools QA Elements
       | fullName       | email          | currentAddress    | permanentAddress  |
       | Antoine Brunet | test@gmail.com | 123, False Street | 123, False Street |
 
-    @checkBox
-    Scenario: Check Box
-      Given I navigate to the check box page
-      And I select Notes which is under Desktop which is under Home
-      Then I see the message indicating I have selected Notes
+  @checkBox
+  Scenario: Check Box
+    Given I navigate to the check box page
+    And I select Notes which is under Desktop which is under Home
+    Then I see the message indicating I have selected Notes
+
+  @radioButton
+  Scenario: Radio Button
+    Given I navigate to the radio button page
+    And I select Yes
+    Then I see the message indicating I have selected Yes
