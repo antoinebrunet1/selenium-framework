@@ -5,12 +5,15 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.toolsQa.elements.*;
 
+import java.io.IOException;
+
 public class ElementsPageStepDefinitions {
     private final TextBoxPage textBoxPage = new TextBoxPage();
     private final CheckBoxPage checkBoxPage = new CheckBoxPage();
     private final RadioButtonPage radioButtonPage = new RadioButtonPage();
     private final TablePage tablePage = new TablePage();
     private final ButtonsPage buttonsPage = new ButtonsPage();
+    private final UploadAndDownloadPage uploadAndDownloadPage = new UploadAndDownloadPage();
 
     @Given("I navigate to the text-box page")
     public void iNavigateToTheTextBoxPage() {
@@ -210,5 +213,30 @@ public class ElementsPageStepDefinitions {
     @Then("I see the message indicating I have done a right click")
     public void iSeeTheMessageIndicatingIHaveDoneARightClick() {
         buttonsPage.thereIsMessageIndicatingIHaveDoneARightClick();
+    }
+
+    @Given("I navigate to the upload and download page")
+    public void iNavigateToTheUploadAndDownloadPage() {
+        uploadAndDownloadPage.navigateToUploadAndDownloadPage();
+    }
+
+    @And("I upload a file")
+    public void iUploadAFile() {
+        uploadAndDownloadPage.uploadFile();
+    }
+
+    @Then("I see the path of the file")
+    public void iSeeThePathOfTheFile() {
+        uploadAndDownloadPage.pathOfFileIsThere();
+    }
+
+    @And("I click on download")
+    public void iClickOnDownload() throws IOException {
+        uploadAndDownloadPage.clickOnDownload();
+    }
+
+    @Then("I see that the file is downloaded")
+    public void iSeeThatTheFileIsDownloaded() {
+        uploadAndDownloadPage.fileHasBeenDownloaded();
     }
 }

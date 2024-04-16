@@ -81,3 +81,15 @@ Feature: Tools QA Elements
     Given I navigate to the buttons page
     And I right click on the second button
     Then I see the message indicating I have done a right click
+
+  @upload
+  Scenario: Upload
+    Given I navigate to the upload and download page
+    And I upload a file
+    Then I see the path of the file
+
+  @download
+  Scenario: Download
+    Given I navigate to the upload and download page
+    And I click on download
+    Then I see that the file is downloaded

@@ -8,11 +8,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.Properties;
+import java.util.HashMap;
+import java.util.Map;
 
 public class WebDriverUtil {
     private static WebDriver webDriver;
@@ -25,8 +27,18 @@ public class WebDriverUtil {
 
         chromeOptions.addArguments("start-maximized");
 
+        Map<String, Object> prefs = new HashMap<>();
+
+        FilesUtil.createDownloadFolderIfItDoesNotExist();
+        prefs.put("download.default_directory", FilesUtil.ABSOLUTE_PATH_OF_DOWNLOAD_FOLDER);
+        chromeOptions.setExperimentalOption("prefs", prefs);
+
         webDriver = new ChromeDriver(chromeOptions);
         webDriver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+    }
+
+    public static WebDriver getWebDriver() {
+        return WebDriverUtil.webDriver;
     }
 
     public static void setScenario(Scenario scenario) {
@@ -136,6 +148,12 @@ public class WebDriverUtil {
         WebElement webElement = getWebElementByXpath(xpath);
 
         actions.contextClick(webElement).perform();
+    }
+
+    public static void uploadFile(String absolutePath, String uploadButtonXpath) {
+        WebElement webElement = getWebElementByXpath(uploadButtonXpath);
+
+        webElement.sendKeys(absolutePath);
     }
 
     public static void quitWebDriver() {
